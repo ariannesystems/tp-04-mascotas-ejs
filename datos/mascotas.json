@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "nombre": "Luna",
+    "especie": "Perro",
+    "edad": 3,
+    "descripcion": "Perra mestiza, cariñosa y juguetona.",
+    "estado": "En adopción",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 2,
+    "nombre": "Milo",
+    "especie": "Gato",
+    "edad": 2,
+    "descripcion": "Gato tranquilo, curioso y muy afectuoso.",
+    "estado": "En adopción",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 3,
+    "nombre": "Rocky",
+    "especie": "Perro",
+    "edad": 5,
+    "descripcion": "Perro activo, obediente y compañero.",
+    "estado": "Reservada",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 4,
+    "nombre": "Nala",
+    "especie": "Gato",
+    "edad": 1,
+    "descripcion": "Gatita joven, dulce y juguetona.",
+    "estado": "En adopción",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 5,
+    "nombre": "Toby",
+    "especie": "Perro",
+    "edad": 4,
+    "descripcion": "Perro amigable, sociable y protector.",
+    "estado": "Adoptada",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 6,
+    "nombre": "Simba",
+    "especie": "Gato",
+    "edad": 3,
+    "descripcion": "Gato independiente, tranquilo y cariñoso.",
+    "estado": "En adopción",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 7,
+    "nombre": "Coco",
+    "especie": "Perro",
+    "edad": 2,
+    "descripcion": "Perro pequeño, alegre y muy cariñoso.",
+    "estado": "Reservada",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 8,
+    "nombre": "Mía",
+    "especie": "Gato",
+    "edad": 4,
+    "descripcion": "Gata tranquila, elegante y afectuosa.",
+    "estado": "Adoptada",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 9,
+    "nombre": "Bruno",
+    "especie": "Perro",
+    "edad": 6,
+    "descripcion": "Perro adulto, noble, tranquilo y leal.",
+    "estado": "En adopción",
+    "imagen": "/img/mascota.svg"
+  },
+  {
+    "id": 10,
+    "nombre": "Lola",
+    "especie": "Perro",
+    "edad": 1,
+    "descripcion": "Cachorra activa, simpática y juguetona.",
+    "estado": "En adopción",
+    "imagen": "/img/mascota.svg"
+  }
+]
