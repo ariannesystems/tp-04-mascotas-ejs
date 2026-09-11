@@ -22,7 +22,6 @@ async function main() {
             //middleware global para parsear el cuerpo de las solicitudes como json
             app.use(express.json());
 
-            
             //Defino la ruta raiz, y respondemos al cliente con un Mensaje de bienvenida inicial
             app.get('/', (req, res)=>{
                 res.send('Bienvenidos a la API de instrumentos');
