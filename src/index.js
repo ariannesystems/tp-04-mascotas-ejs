@@ -1,7 +1,8 @@
 const path = require("node:path");
 const { leerArchivoJSON } = require("./archivos.js");
 const express = require("express");
-const { error } = require("node:console");
+const expressLayouts = require("express-ejs-layouts");
+
 
 //Defino una constante para el puerto de escucha 3000
 const PORT = 3000;
@@ -22,14 +23,17 @@ async function main() {
             //middleware global para parsear el cuerpo de las solicitudes como json
             app.use(express.json());
 
-            //Defino la ruta raiz, y respondemos al cliente con un Mensaje de bienvenida inicial
-            app.get('/', (req, res)=>{
-                res.send('Bienvenidos a la API de instrumentos');
+            //Le comunicamos a express que use el motor ejs para procesar las plantillas
+            app.set("view engine", "ejs");
+
+            //Le decimo en donde esta la carpeta de vista de los archivos ejs
+            app.set("views", path.join(__dirname, "..", "views"));
+
+            //Renderizo el inicio    
+            app.get("/", (req, res) => {
+                    res.render("inicio", { titulo: "Mascotas en adopción" });
             });
-            
-            console.log(mascotas);
-            
-                    
+                                
            //Servidor escuchando listo para las peticiones
            app.listen(PORT, ()=>{
                 console.log(`Servidor escuchando en http://localhost:${PORT}`);
