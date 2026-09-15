@@ -13,35 +13,106 @@ const rutaDatoJSON = path.join(__dirname, "..", "datos", "mascotas.json");
 //Funcion principal de inicio
 async function main() {
 
-    try {
-            //Leo y transformo el archivo JSON    
-            const mascotas = await leerArchivoJSON( rutaDatoJSON );
+    //Leo y transformo el archivo JSON    
+    const mascotas = await leerArchivoJSON( rutaDatoJSON );
 
-            //Crear una instancia de la aplicación express
-            const app = express();
+    //Crear una instancia de la aplicación express
+    const app = express();
 
-            //middleware global para parsear el cuerpo de las solicitudes como json
-            app.use(express.json());
+    //Le comunicamos a express que use el motor ejs para procesar las plantillas
+    app.set("view engine", "ejs");
 
-            //Le comunicamos a express que use el motor ejs para procesar las plantillas
-            app.set("view engine", "ejs");
+    //Le decimo en donde esta la carpeta de vista de los archivos ejs
+    app.set("views", path.join(__dirname, "..", "views"));
 
-            //Le decimo en donde esta la carpeta de vista de los archivos ejs
-            app.set("views", path.join(__dirname, "..", "views"));
+    app.use(expressLayouts);
 
-            //Renderizo el inicio    
-            app.get("/", (req, res) => {
-                    res.render("inicio", { titulo: "Mascotas en adopción" });
+    //Lectura de la vista principal HTML
+    app.set("layout", "layouts/main");
+
+    //Lectura de la ruta de los recursos estáticos
+    app.use(express.static(path.join(__dirname, "..", "public")));
+
+    //Traduce lo que viene en la peticion en html a objeto de javascript que entiende express
+    app.use(express.urlencoded({ extended: false }));
+
+    //Renderizo el inicio    
+    app.get("/", (req, res) => {
+            res.render("inicio", { titulo: "Mascotas en adopción" });
+    });
+
+    app.get("/mascotas", (req, res) => {
+        res.render("mascotas/lista", {
+            titulo: "Mascotas",
+            mascotas,
+        });
+    });
+
+    app.get("/productos/nuevo", (req, res) => {
+        res.render("productos/nuevo", {
+            titulo: "Nuevo producto",
+            error: null,
+            valores: {},
+        });
+    });
+
+    app.get("/productos/:id", (req, res) => {
+        const id = Number(req.params.id);
+        const producto = productos.find((elemento) => elemento.id === id);
+
+        if (!producto) {
+            return res.status(404).render("no-encontrado", {
+                titulo: "Producto no encontrado",
+                mensaje: "No existe un producto con ese identificador.",
             });
-                                
-           //Servidor escuchando listo para las peticiones
-           app.listen(PORT, ()=>{
-                console.log(`Servidor escuchando en http://localhost:${PORT}`);
-           });
+        }
 
-    } catch (error) {
-            console.error(`Error en la aplicación: ${error.message}`);
-            process.exitCode = 1;
-    }
+        res.render("productos/detalle", {
+            titulo: producto.nombre,
+            producto,
+        });
+    });
+
+    app.post("/productos", (req, res) => {
+        const { nombre, categoria, precio, descripcion } = req.body;
+        const nombreLimpio = String(nombre ?? "").trim();
+        const categoriaLimpia = String(categoria ?? "").trim();
+        const descripcionLimpia = String(descripcion ?? "").trim();
+        const precioNumerico = Number(precio);
+        if (
+            !nombreLimpio ||
+            !categoriaLimpia ||
+            !descripcionLimpia ||
+            !Number.isFinite(precioNumerico) ||
+            precioNumerico <= 0
+        ) {
+            return res.status(400).render("productos/nuevo", {
+                titulo: "Nuevo producto",
+                error: "Completá todos los campos con valores válidos.",
+                valores: req.body,
+            });
+        }
+        const ultimoId = productos.reduce(
+            (mayorId, producto) => Math.max(mayorId, producto.id),
+            0,
+        );
+        productos.push({
+            id: ultimoId + 1,
+            nombre: nombreLimpio,
+            categoria: categoriaLimpia,
+            precio: precioNumerico,
+            descripcion: descripcionLimpia,
+        });
+        res.redirect("/productos");
+    });
+
+                        
+    //Servidor escuchando listo para las peticiones
+    app.listen(PORT, ()=>{
+        console.log(`Servidor escuchando en http://localhost:${PORT}`);
+    });
 }
-main();
+main().catch((error) => {
+    console.error("No se pudo iniciar la aplicación:", error);
+    process.exitCode = 1;
+});
