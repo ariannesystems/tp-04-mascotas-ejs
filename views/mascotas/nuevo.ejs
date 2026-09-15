@@ -19,7 +19,12 @@
         <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></textarea>
         
         <label for="estado">Estado</label>
-        <input id="estado" name="estado" value="<%= valores.estado ?? '' %>" required>
+        <select id="estado" name="estado" required>
+            <option value="">Seleccionar estado</option>
+            <option value="En adopción" <%= valores.estado === 'En adopción' ? 'selected' : '' %>>En adopción</option>
+            <option value="Reservada" <%= valores.estado === 'Reservada' ? 'selected' : '' %>>Reservada</option>
+            <option value="Adoptada" <%= valores.estado === 'Adoptada' ? 'selected' : '' %>>Adoptada</option>
+        </select>
 
         <label for="imagen">Ruta de imagen</label>
         <input id="imagen" name="imagen" value="<%= valores.imagen ?? '' %>" placeholder="/img/mascota.svg" required>
