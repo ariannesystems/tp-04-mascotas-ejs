@@ -3,20 +3,29 @@
         <p class="etiqueta">CATÁLOGO</p>
         <h1><%= titulo %></h1>
     </div>
-    <a class="boton" href="/productos/nuevo">Agregar producto</a>
+    <a class="boton" href="/mascotas/nuevo">Agregar mascota</a>
  </header>
 
 <% if (mascotas.length === 0) { %>
- <p>No hay mascotas para mostrar.</p>
+    <p>No hay mascotas para mostrar.</p>
 <% } else { %>
- <section class="grilla" aria-label="Productos disponibles">
+ <section class="grilla" aria-label="Mascotas disponibles">
     <% mascotas.forEach((mascota) => { %>
-    <article class="tarjeta">
-        <p class="etiqueta"><%= mascota.nombre %></p>
-        <h2><%= mascota.especie %></h2>
-        <p class="precio">$<%= mascota.edad.toLocaleString("es-AR") %></p>
-        <a href="/mascotas/<%= mascota.id %>">Ver detalle</a>
-    </article>
+        <article class="tarjeta">
+            <img src="<%= mascota.imagen %>" alt="" width="200" height="200">
+
+            <p class="etiqueta"><%= mascota.nombre %></p>
+            
+            <h2>Especie: <%= mascota.especie %></h2>
+            
+            <p class="precio">Edad: <%= mascota.edad%></p>
+
+            <p>Descripción: <%= mascota.descripcion %></p>
+
+            <p>Estado: <%= mascota.estado %></p>
+            
+            <a href="/mascotas/<%= mascota.id %>">Ver detalle</a>
+        </article>
     <% }) %>
  </section>
 <% } %>

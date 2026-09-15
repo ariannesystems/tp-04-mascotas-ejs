@@ -4,17 +4,26 @@
     <% if (error) { %>
         <p class="error" role="alert"><%= error %></p>
     <% } %>
-    <form action="/productos" method="post" class="formulario">
+    <form action="/mascotas" method="post" class="formulario">
         <label for="nombre">Nombre</label>
         <input id="nombre" name="nombre" value="<%= valores.nombre ?? '' %>" required>
-        <label for="categoria">Categoría</label>
-        <input id="categoria" name="categoria" value="<%= valores.categoria ?? '' %>" required>
-        <label for="precio">Precio</label>
-        <input id="precio" name="precio" type="number" min="1" step="1" value="<%= valores.precio ?? '' %>"
+        
+        <label for="especie">Categoría</label>
+        <input id="especie" name="especie" value="<%= valores.especie ?? '' %>" required>
+
+        <label for="edad">Edad</label>
+        <input id="edad" name="edad" type="number" min="1" step="1" value="<%= valores.edad ?? '' %>"
         required>
+
         <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></
-        textarea>
-        <button type="submit">Guardar producto</button>
+        <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></textarea>
+        
+        <label for="estado">Estado</label>
+        <input id="estado" name="estado" value="<%= valores.estado ?? '' %>" required>
+
+        <label for="imagen">Ruta de imagen</label>
+        <input id="imagen" name="imagen" value="<%= valores.imagen ?? '' %>" placeholder="/img/mascota.svg" required>
+        
+        <button type="submit">Guardar mascota</button>
     </form>
 </section>

@@ -38,72 +38,84 @@ async function main() {
 
     //Renderizo el inicio    
     app.get("/", (req, res) => {
-            res.render("inicio", { titulo: "Mascotas en adopción" });
+            res.render("inicio", { titulo: "Encuentra a tu compañero ideal" });
     });
 
+    //Extraigo el catalogo de mascotas, todas
     app.get("/mascotas", (req, res) => {
         res.render("mascotas/lista", {
-            titulo: "Mascotas",
+            titulo: "Lista de mascotas",
             mascotas,
         });
     });
 
-    app.get("/productos/nuevo", (req, res) => {
-        res.render("productos/nuevo", {
-            titulo: "Nuevo producto",
+    app.get("/mascotas/nuevo", (req, res) => {
+        res.render("mascotas/nuevo", {
+            titulo: "Nueva mascota",
             error: null,
             valores: {},
         });
     });
 
-    app.get("/productos/:id", (req, res) => {
+    app.get("/mascotas/:id", (req, res) => {
         const id = Number(req.params.id);
-        const producto = productos.find((elemento) => elemento.id === id);
+        const mascota = mascotas.find((elemento) => elemento.id === id);
 
-        if (!producto) {
+        if (!mascota) {
             return res.status(404).render("no-encontrado", {
-                titulo: "Producto no encontrado",
-                mensaje: "No existe un producto con ese identificador.",
+                titulo: "Mascota no encontrada",
+                mensaje: "No existe una mascota con ese identificador.",
             });
         }
 
-        res.render("productos/detalle", {
-            titulo: producto.nombre,
-            producto,
+        res.render("mascotas/detalle", {
+            titulo: mascota.nombre,
+            mascota,
         });
     });
 
-    app.post("/productos", (req, res) => {
-        const { nombre, categoria, precio, descripcion } = req.body;
+    app.post("/mascotas", (req, res) => {
+
+        const { nombre, especie, edad, descripcion, estado, imagen } = req.body;
+
         const nombreLimpio = String(nombre ?? "").trim();
-        const categoriaLimpia = String(categoria ?? "").trim();
+        const especieLimpia = String(especie ?? "").trim();
+        const edadNumerica = Number(edad )
         const descripcionLimpia = String(descripcion ?? "").trim();
-        const precioNumerico = Number(precio);
+        const estadoLimpia = String(estado ?? "").trim();
+        const rutaImagenLimpia = String(imagen ?? "").trim();
+
         if (
             !nombreLimpio ||
-            !categoriaLimpia ||
+            !especieLimpia ||
             !descripcionLimpia ||
-            !Number.isFinite(precioNumerico) ||
-            precioNumerico <= 0
+            !estadoLimpia ||
+            !rutaImagenLimpia ||
+            !Number.isFinite(edadNumerica) ||
+            edadNumerica <= 0
         ) {
-            return res.status(400).render("productos/nuevo", {
-                titulo: "Nuevo producto",
+            return res.status(400).render("mascotas/nuevo", {
+                titulo: "Nueva mascota",
                 error: "Completá todos los campos con valores válidos.",
                 valores: req.body,
             });
         }
-        const ultimoId = productos.reduce(
-            (mayorId, producto) => Math.max(mayorId, producto.id),
+
+        //Generamos el siguiente id del json nueva propiedades
+        const ultimoId = mascotas.reduce(
+            (mayorId, mascota) => Math.max(mayorId, mascota.id),
             0,
         );
-        productos.push({
+        mascotas.push({
             id: ultimoId + 1,
             nombre: nombreLimpio,
-            categoria: categoriaLimpia,
-            precio: precioNumerico,
+            especie: especieLimpia,
+            edad: edadNumerica,
             descripcion: descripcionLimpia,
+            estado: estadoLimpia,
+            imagen: rutaImagenLimpia,
         });
-        res.redirect("/productos");
+        res.redirect("/mascotas");
     });
 
                         
