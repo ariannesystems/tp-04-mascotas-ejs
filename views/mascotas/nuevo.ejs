@@ -1,5 +1,6 @@
-<section class="panel-formulario">
+<section class="tarjeta-principal">
     <p class="etiqueta">NUEVO INGRESO</p>
+    <hr>
     <h1><%= titulo %></h1>
     <% if (error) { %>
         <p class="error" role="alert"><%= error %></p>
@@ -28,7 +29,7 @@
 
         <label for="imagen">Ruta de imagen</label>
         <input id="imagen" name="imagen" value="<%= valores.imagen ?? '' %>" placeholder="/img/mascota.svg" required>
-        
+        <hr>
         <button type="submit">Guardar mascota</button>
     </form>
 </section>

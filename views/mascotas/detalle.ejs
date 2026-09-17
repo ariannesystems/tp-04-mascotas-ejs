@@ -1,15 +1,22 @@
-<article class="detalle">
-    <img src="<%= mascota.imagen %>" alt="" width="400" height="400">
-
-    <p class="etiqueta"><%= mascota.nombre %></p>
+<article class="tarjeta-principal">
     
-    <h2>Especie: <%= mascota.especie %></h2>
-            
-    <p class="precio">Edad: <%= mascota.edad%></p>
+    <div class="contenedor-foto">
+        <img src="<%= mascota.imagen %>" alt="" width="400" height="400">
+    </div>
 
-    <p>Descripción: <%= mascota.descripcion %></p>
+    <div>
+         <p class="etiqueta"><%= mascota.nombre %></p>
+    
+        <h2 class="especie-titulo">Especie: <%= mascota.especie %></h2>
+                
+        <p class="edad-texto">Edad: <%= mascota.edad%> Año</p>
 
-    <p>Estado: <%= mascota.estado %></p>
+        <p><span class="edad-texto">Descripción:</span> <%= mascota.descripcion %></p>
 
-    <a href="/mascotas">Volver al catálogo</a>
+        <p class="edad-texto">Estado: <%= mascota.estado %></p>
+    </div>
+    <hr>
+    <div class="espacio-interlineado objeto-centrado">
+        <a class="boton" href="/mascotas">Volver al catálogo</a>
+    </div>
 </article>

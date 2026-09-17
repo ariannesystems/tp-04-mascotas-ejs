@@ -1,136 +1,235 @@
 :root {
- font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sansserif;
- color: #26231f;
- background: #f6f2eb;
- line-height: 1.6;
+    font-family: 'Nunito Sans', sans-serif;
+    color: #202830;
+    background: #F8F8F8;
+    line-height: 1.6;
 }
+
 * {
  box-sizing: border-box;
 }
+
 body {
- min-height: 100vh;
- margin: 0;
- display: flex;
- flex-direction: column;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
 a {
- color: #17675d;
- font-weight: 700;
+    color: #202830;
+    text-decoration: none;
 }
 a:hover {
- color: #0f4942;
-}
-.encabezado,
-.pie,
-.contenedor {
- width: min(70rem, calc(100% - 2rem));
- margin-inline: auto;
+    color: #2A8556;
+    text-decoration:underline;
 }
 
 .encabezado {
- display: flex;
- align-items: center;
- justify-content: space-between;
- gap: 1rem;
- padding-block: 1rem;
- border-bottom: 1px solid #d8d0c5;
-}
-.encabezado nav {
- display: flex;
- flex-wrap: wrap;
- gap: 1rem;
-}
-.marca {
- display: inline-flex;
- align-items: center;
- gap: 0.75rem;
- color: #26231f;
- text-decoration: none;
-}
-.marca img {
- flex: 0 0 auto;
-}
-.contenedor {
- flex: 1;
- padding-block: 3rem;
+    display: flex;
+    justify-content: space-between; /* Separa la marca (izq) del nav (der) */
+    align-items: center;            /* Centra todo verticalmente */
+    padding: 0.1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.hero,
-.estado,
-.detalle,
-.panel-formulario {
- max-width: 45rem;
- padding: clamp(1.5rem, 5vw, 4rem);
- border: 1px solid #d8d0c5;
- border-radius: 1.25rem;
- background: #fffdf9;
- box-shadow: 0 1rem 2.5rem rgb(75 63 48 / 8%);
+.logo a{
+        display: flex;
+        gap: 0.75rem; /* Espacio entre el logo y el título */
+        font-weight: 500;
+        text-decoration: none;
 }
-h1,
-h2,
-p {
- margin-top: 0;
+.logo a span{
+    color: #2A8556;
 }
-h1 {
- font-size: clamp(2rem, 6vw, 3.75rem);
- line-height: 1.05;
+
+.logo a img{
+    border-radius: 70%;
+    object-fit: cover;
 }
-h2 {
- line-height: 1.2;
+
+
+nav{
+   display: flex;
+   gap: 1.5rem; /* Espacio entre cada enlace */
+   font-weight: 800;
 }
-.etiqueta {
- margin-bottom: 0.5rem;
- color: #8a4b21;
- font-size: 0.75rem;
- font-weight: 800;
- letter-spacing: 0.12em;
- text-transform: uppercase;
+
+.pie{
+    background: #14532d; 
+    margin: 1rem;
+    border-radius: 15px;
 }
-.boton,
-button {
- display: inline-block;
- padding: 0.75rem 1rem;
- border: 0;
- border-radius: 0.65rem;
- background: #17675d;
- color: white;
- font: inherit;
- font-weight: 800;
- text-decoration: none;
- cursor: pointer;
+.pie p{
+    color: #F8F8F8;
+    font-weight: 800;
+    text-align: center;
+}
+
+.contenedor{
+    flex: 1; /* Ocupa todo el espacio vertical disponible entre header y footer */
+    width: 100%;
+    max-width: 1000px; /* Ancho máximo de tu sitio */
+    margin: 0 auto; /* Centra horizontalmente el contenedor no el contenido*/
+    padding: 1rem .5rem;
+    display: flex;
+    justify-content: center; /* Centra la tarjeta horizontalmente */
+    align-items: center; /* Centra la tarjeta verticalmente si hay espacio */
+    box-sizing: border-box;
+}
+
+.tarjeta-principal {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Sombra suave para dar elevación */
+    
+    /* Ancho responsivo */
+    width: min(90%, 600px); 
+}
+
+.tarjeta-catalogo {
+    width: 100%;
+    
+    margin: 0 auto 2rem;
+    padding: 1.5rem 2rem;
+    background-color: #ffffff;
+    border-radius: 16px;          /* Esquinas fuertemente redondeadas */
+    box-sizing: border-box;
+}
+
+.linea-separadora {
+    border: none;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 0.75rem 0 1.25rem;
+    width: 100%;
+}
+
+.fila-catalogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.etiqueta{
+    color: #2A8556;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    
+}
+
+.texto-centrado {
+  text-align: center;
+}
+
+hr{
+    border: none;              /* Quita el borde por defecto del navegador */
+    height: 1px;               /* Grosor de la línea */
+    background-color: #2A8556; /* Color de la línea */
+    margin: 1.5rem 0;          /* Espaciado arriba y abajo */
+    width: 100%;
+}
+h1{
+    margin: 0;
+}
+
+.boton, button{
+    /* Estado inicial */
+    background-color: #14532d; /* Verde oscuro */
+    color: #ffffff;            /* Letra blanca */
+    border: 2px solid #14532d; /* Borde inicial igual al fondo */
+    border-radius: 25px;
+
+   
+    padding: 0.75rem 1.75rem;  /* Espaciado interno (alto y ancho) */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;           /* Cambia el puntero al pasar el mouse */
+    
+    /* Animación */
+    transition: all 0.3s ease; /* Transición suave de 0.3 segundos */
 }
 
 .boton:hover,
-button:hover {
- background: #0f4942;
- color: white;
+button:hover  {
+    background-color: #ffffff;
+    color: #14532d;  
+    border-color: #14532d;
+    text-decoration: none;
 }
-.cabecera-pagina {
- display: flex;
- align-items: end;
- justify-content: space-between;
- gap: 1rem;
- margin-bottom: 2rem;
+
+
+/* Contenedor Grid Responsivo */
+.grid-mascotas {
+    display: grid;
+    /* Crea columnas automáticas de mínimo 240px y máximo 1fr */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
-.cabecera-pagina h1 {
- margin-bottom: 0;
+
+/* Tarjeta individual */
+.tarjeta-mascota {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.grilla {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
- gap: 1rem;
+
+.tarjeta-mascota:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
-.tarjeta {
- padding: 1.25rem;
- border: 1px solid #d8d0c5;
- border-radius: 0.9rem;
- background: white;
+
+/* Foto con encuadre perfecto */
+.contenedor-foto {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Proporción uniforme para todas las fotos */
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
-.precio {
- color: #8a4b21;
- font-size: 1.25rem;
- font-weight: 800;
- }
+
+.contenedor-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Evita que las imágenes se deformen */
+}
+
+.especie-titulo {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  color: #111827;
+  font-weight: 700;
+}
+
+.edad-texto {
+  margin: 0;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.espacio-interlineado{
+    margin: 2rem;
+}
+.objeto-centrado{
+    text-align: center;
+}
+
 .formulario {
  display: grid;
  gap: 0.75rem;
@@ -152,36 +251,41 @@ button:hover {
 .formulario textarea {
  resize: vertical;
 }
-.formulario button {
- justify-self: start;
- margin-top: 0.5rem;
-}
-.formulario input:focus,
-.formulario textarea:focus,
-a:focus-visible,
-button:focus-visible {
- outline: 3px solid #f4ca76;
- outline-offset: 3px;
-}
-.error {
- padding: 0.75rem 1rem;
- border-left: 0.3rem solid #b42318;
- background: #fff0ed;
- color: #7a271a;
- font-weight: 700;
-}
-.pie {
- padding-block: 1.25rem;
- border-top: 1px solid #d8d0c5;
- color: #655f57;
-}
-.pie p {
- margin-bottom: 0;
-}
-@media (max-width: 38rem) {
- .encabezado,
- .cabecera-pagina {
- align-items: flex-start;
- flex-direction: column;
- }
+
+/* --- Adaptación a Celulares (Menos de 640px) --- */
+@media (max-width: 640px) {
+    .encabezado {
+        flex-direction: column; /* Apila el logo arriba y el nav abajo */
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .logo img {
+        width: 90px;
+        height: 50px; /* Reduce ligeramente el logo en pantallas chicas */
+    }
+
+    .logo h2 {
+        font-size: 1.2rem;
+    }
+
+   .tarjeta-catalogo {
+    padding: 1.25rem 1rem; /* Reduce padding interno para aprovechar espacio */
+    }
+
+    .fila-catalogo {
+        flex-direction: column; /* Apila el título y el botón en vertical */
+        align-items: stretch;   /* Permite que el botón ocupe el ancho completo */
+        gap: 1rem;
+    }
+
+    .fila-catalogo h1 {
+        font-size: 1.35rem;     /* Reduce ligeramente el tamaño del título */
+        text-align: left;
+    }
+
+    .boton {
+        width: 100%;            /* Botón ancho completo para facilitar toque con el dedo */
+        box-sizing: border-box;
+    }
 }
